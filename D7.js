@@ -72,10 +72,40 @@ console.log(incrementOfArrayNum(newNumber, 5));
   Scrivi una funzione che, dato un array di stringhe, ritorni un nuovo array contenente le lunghezze delle rispettive stringhe dell'array di partenza
   es.: ["EPICODE", "is", "great"] => [7, 2, 5]
 */
+const arrStr = ["EPICODE", "is", "great"];
+
+const numToStr = (arrayStr) => {
+  const arrLength = arrayStr.map((str) => str.length);
+  return arrLength;
+};
+
+console.log(numToStr(arrStr));
 
 /* ESERCIZIO 8 (forEach o for)
   Scrivi una funzione per creare un array contenente tutti i valori DISPARI da 1 a 99.
 */
+
+const DispArr = () => {
+  let dispBox = [];
+  //METODO FOREACH
+  //const arrayPieno = Array.from({ length: 99 }, (_, i) => i + 1); // metodo array.from, genera array da 0 a 100.  da CAPIRE come funziona
+  // arrayPieno.forEach((num) => {
+  //   if (num % 2 !== 0) {
+  //     dispBox.push(num);
+  //   }
+  // });
+
+  //METODO FOR
+  for (let i = 0; i < 100; i++) {
+    let num = i;
+    if (num % 2 !== 0) {
+      dispBox.push(num);
+    }
+  }
+  return dispBox;
+};
+
+console.log(DispArr());
 
 /* Questo array di film verrà usato negli esercizi a seguire. Non modificarlo e scorri oltre per riprendere gli esercizi :) */
 const movies = [
@@ -183,17 +213,48 @@ const movies = [
   Scrivi una funzione per trovare il film più vecchio nell'array fornito.
 */
 
+const mostOld = (arrMovies) => {
+  let oldMovie = arrMovies[0];
+  arrMovies.forEach((movie) => {
+    if (movie.Year < oldMovie.Year) {
+      oldMovie = movie;
+    }
+  });
+
+  return oldMovie.Title;
+};
+
+console.log(mostOld(movies));
+
 /* ESERCIZIO 10
   Scrivi una funzione per ottenere il numero di film contenuti nell'array fornito.
 */
+
+const numberOfMovies = (arrMovies) => {
+  let numMovies = arrMovies.length;
+  return numMovies;
+};
+console.log(numberOfMovies(movies));
 
 /* ESERCIZIO 11 (map)
   Scrivi una funzione per creare un array con solamente i titoli dei film contenuti nell'array fornito.
 */
 
+const onlyTitle = (arrMovies) => {
+  const titleArr = arrMovies.map((title) => title.Title);
+  return titleArr;
+};
+console.log(onlyTitle(movies));
+
 /* ESERCIZIO 12 (filter)
   Scrivi una funzione per ottenere dall'array fornito solamente i film usciti nel millennio corrente.
 */
+
+const only22th = (arrMovies) => {
+  const year22th = arrMovies.filter((year) => year.Year > 1999);
+  return year22th;
+};
+console.log(only22th(movies));
 
 /* ESERCIZIO 13 (reduce)
   Scrivi una funzione per calcolare la somma di tutti gli anni in cui sono stati prodotti i film contenuti nell'array fornito.
